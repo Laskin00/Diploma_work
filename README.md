@@ -63,4 +63,14 @@ INSERT INTO users(user_uuid,first_name,last_name,is_admin,email,pwd) VALUES('1ad
 
 ### Setup connection
 
-Go in application.properties in the back-end project and setup the correct values for your database
+Go in application.properties in the back-end project and setup the correct values for your database.
+
+Example: 
+
+spring.jpa.hibernate.ddl-auto= update
+
+spring.datasource.url=jdbc:postgresql://localhost:5433/meetingapp
+spring.datasource.username=postgres
+spring.datasource.password=123123
+spring.jpa.properties.hibernate.dialect= org.hibernate.dialect.PostgreSQLDialect
+server.error.whitelabel.enabled=false
