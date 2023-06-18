@@ -14,6 +14,8 @@ import WbSunnyIcon from "@material-ui/icons/WbSunny";
 import { getDarkModePreference, toggleDarkMode } from "../../../session";
 import ExitToAppIcon from "@material-ui/icons/ExitToApp";
 import VpnKeyIcon from "@material-ui/icons/VpnKey";
+import AccountBox from "@material-ui/icons/AccountBox";
+
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -135,6 +137,21 @@ export const NavBar = () => {
               </>
             )}
 
+<>
+                <Tooltip arrow title={"Profile"}>
+                  <IconButton
+                    edge="start"
+                    color="inherit"
+                    component={Link}
+                    to="/profile"
+                  >
+                    <AccountBox className={classes.navIcon} />
+                  </IconButton>
+                </Tooltip>
+
+                <Divider orientation="vertical" className={classes.divider} />
+              </>
+              
             <Tooltip arrow title={"Sign out"}>
               <IconButton
                 edge="start"

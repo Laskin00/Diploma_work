@@ -31,6 +31,7 @@ public class UserController {
 	
 	@PostMapping("/register")
 	private String register(@RequestBody User newUser) {
+		System.out.println(newUser);
 		if(!checkUser(newUser).equals("")){
 			return checkUser(newUser);
 		}

@@ -1,5 +1,7 @@
 package com.al.meetingapp;
 
+import io.swagger.v3.oas.models.OpenAPI;
+import io.swagger.v3.oas.models.info.Info;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.security.servlet.SecurityAutoConfiguration;
@@ -32,5 +34,12 @@ public class MeetingappApplication {
 		FilterRegistrationBean<CorsFilter> bean = new FilterRegistrationBean<>(new CorsFilter(source));
 		bean.setOrder(Ordered.HIGHEST_PRECEDENCE);
 		return bean;
+	}
+
+	@Bean
+	public OpenAPI openAPI() {
+		return new OpenAPI().info(new Info().title("SpringDoc example")
+				.description("SpringDoc application")
+				.version("v0.0.1"));
 	}
 }

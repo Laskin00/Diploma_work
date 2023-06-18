@@ -181,7 +181,8 @@ export const HomePage = () => {
   }, [inviteToken, sessionToken]);
 
   const fetchMeetings = async (sessionToken: string) => {
-    const meetingsResponse = await api.getUserMeetings(sessionToken);
+    const { user } = await useAuth();
+    const meetingsResponse = user.isAdmin ? await api.getAllMeetingsAdmin(sessionToken) : await api.getUserMeetings(sessionToken);
 
     meetingsResponse && setMeetings(meetingsResponse);
   };

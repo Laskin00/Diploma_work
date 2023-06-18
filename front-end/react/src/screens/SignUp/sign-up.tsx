@@ -82,6 +82,7 @@ export const SignUp = () => {
             lastName: '',
             email: '',
             password: '',
+            image_url: '',
           }}
           onSubmit={async (values, actions) => {
             const response =
@@ -144,6 +145,19 @@ export const SignUp = () => {
                     variant='outlined'
                     required
                     fullWidth
+                    name='image_url'
+                    label='Image URL'
+                    type='text'
+                    id='image_url'
+                    onChange={handleChange}
+                  />
+                </Grid>
+
+                <Grid item xs={12}>
+                  <TextField
+                    variant='outlined'
+                    required
+                    fullWidth
                     name='password'
                     label='Password'
                     type='password'
@@ -152,6 +166,8 @@ export const SignUp = () => {
                     onChange={handleChange}
                   />
                 </Grid>
+
+
               </Grid>
 
               <Button

@@ -8,6 +8,7 @@ export interface IUser {
   email: string;
   sessionToken: string;
   isAdmin: boolean;
+  image_url: string;
 }
 
 export interface IApiResponse {
@@ -24,6 +25,7 @@ export interface ISignUpData {
   firstName: string;
   lastName: string;
   email: string;
+  image_url: string;
   password: string;
 }
 

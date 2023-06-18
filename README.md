@@ -19,6 +19,10 @@ docker run --name meetingapp -d --rm \
   -p 5432:5433\
   docker.io/postgres:13.4
 
+### Enter the database
+
+Enter the container using the docker interface. In the terminal execute: psql -U postgres
+
 ### Create tables
 
 DROP TABLE IF EXISTS users CASCADE;
@@ -29,6 +33,7 @@ user_uuid VARCHAR(255) NOT NULL PRIMARY KEY UNIQUE,
     is_admin BOOLEAN NOT NULL,
     session_token VARCHAR(255),
     email VARCHAR(255) NOT NULL,
+	image_url VARCHAR(255),
     pwd VARCHAR(255) NOT NULL
 );
 
@@ -44,10 +49,11 @@ CREATE TABLE meetings(
 
 DROP TABLE IF EXISTS meetinguserconnections CASCADE;
 CREATE TABLE meetinguserconnections(
+	id INT,
     connection_id SERIAL NOT NULL UNIQUE,
     is_owner boolean NOT NULL DEFAULT false,
-    user_uuid VARCHAR(255) NOT NULL REFERENCES users(user_uuid),
-    meeting_uuid VARCHAR(255) NOT NULL REFERENCES meetings(meeting_uuid),
+    user_uuid VARCHAR(255) NOT NULL REFERENCES users(user_uuid) ON DELETE CASCADE,
+    meeting_uuid VARCHAR(255) NOT NULL REFERENCES meetings(meeting_uuid) ON DELETE CASCADE,
     CONSTRAINT muc_pk PRIMARY KEY(user_uuid,meeting_uuid)
 );
 
@@ -55,11 +61,12 @@ DROP TABLE IF EXISTS meetingcomments CASCADE;
 CREATE TABLE meetingcomments(
     comment_id SERIAL NOT NULL UNIQUE PRIMARY KEY,
     comment_content VARCHAR(255) NOT NULL,
-    user_uuid VARCHAR(255) NOT NULL REFERENCES users(user_uuid),
-    meeting_uuid VARCHAR(255) NOT NULL REFERENCES meetings(meeting_uuid)
+    user_uuid VARCHAR(255) NOT NULL REFERENCES users(user_uuid) ON DELETE CASCADE,
+    meeting_uuid VARCHAR(255) NOT NULL REFERENCES meetings(meeting_uuid) ON DELETE CASCADE
 );
 
 INSERT INTO users(user_uuid,first_name,last_name,is_admin,email,pwd) VALUES('1admin1','Admin','Admin',True,'ad@abv.bg','$2a$10$9NJul0512jUPAG1afkwfw.VHFDKHEBZuIbf8.noen0BACrWcv03u6');
+
 
 ### Setup connection
 

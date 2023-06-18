@@ -21,7 +21,7 @@ const lightTheme = createMuiTheme({
       paper: grey[200],
     },
     primary: {
-      main: '#FE6B8B',
+      main: '#6DD5FA',
     },
     secondary: {
       main: '#FF8E53',
@@ -39,7 +39,7 @@ const darkTheme = createMuiTheme({
       paper: '#3F5679',
     },
     primary: {
-      main: '#FE6B8B',
+      main: '#6DD5FA',
     },
     secondary: {
       main: '#FF8E53',

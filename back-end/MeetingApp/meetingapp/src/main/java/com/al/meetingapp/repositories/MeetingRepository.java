@@ -9,6 +9,8 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.al.meetingapp.entities.Meeting;
 
+import java.util.List;
+
 @Repository
 @Transactional
 public interface MeetingRepository extends JpaRepository<Meeting, String> {

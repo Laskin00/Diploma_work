@@ -7,6 +7,8 @@ import java.util.List;
 import com.al.meetingapp.repositories.CommentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import com.al.meetingapp.entities.Meeting;
@@ -138,6 +140,21 @@ public class MeetingController {
 		return commentRepository.findByMeeting(m);
 	}
 
+	@GetMapping("/all")
+	private ResponseEntity getMeetings(@RequestHeader("session-token") String sessionToken){
+		User admin = userRepository.findBySessionToken(sessionToken);
+		if(admin == null){
+			return new ResponseEntity<>(HelperService.toJson("error","User not found"),HttpStatus.NOT_FOUND);
+		}
+		if(!admin.getIsAdmin()){
+			return new ResponseEntity<>(HelperService.toJson("error","User is not an admin"),HttpStatus.UNAUTHORIZED);
+
+		}
+		List<Meeting> allMeetings = meetingRepository.findAll();
+		System.out.println(allMeetings);
+		return  new ResponseEntity<>(allMeetings, HttpStatus.OK);
+	}
+
 	@PostMapping("/leave/{uuid}")
 	private String leaveByUuid(@PathVariable String uuid, @RequestBody String sessionToken){
 		User leaver = UserController.getUserBySessionTokenInJson(userRepository,sessionToken);
@@ -175,6 +192,8 @@ public class MeetingController {
 		meetingUserConnectionRepository.save(new MeetingUserConnection(invitedTo,invited,isOwner));
 
 	}
+
+
 	
 
 }

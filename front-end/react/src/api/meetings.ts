@@ -68,6 +68,15 @@ export const getUserMeetings = async (
   return response.data;
 };
 
+export const getAllMeetingsAdmin = async (
+  sessionToken: string
+): Promise<IMeeting[]> => {
+  const response = await (await axios.get(`/meeting/all`,{headers:{"session-token":sessionToken}}));
+
+  return response.data;
+};
+
+
 export const getMeetingUsers = async (
   meetingUuid: string
 ): Promise<IUser[]> => {

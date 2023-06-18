@@ -45,6 +45,9 @@ public class User {
 	@NotNull
 	@Column(name = "pwd")
 	private String password;
+	@NotNull
+	@Column(name = "image_url")
+	private String image_url;
 
 	@NotNull
 	@Column(name = "is_admin")
@@ -121,5 +124,11 @@ public class User {
 		this.id = uuid;
 	}
 
-	
+	public String getImage_url() {
+		return image_url;
+	}
+
+	public void setImage_url(String image_url) {
+		this.image_url = image_url;
+	}
 }

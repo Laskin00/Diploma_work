@@ -289,13 +289,14 @@ export const MeetingCard = ({
       try {
         if (meetingOwner.id === currentUser.id || currentUser.isAdmin) {
           await api.deleteMeeting(meeting.id, sessionToken);
+          triggerSnackbar('Hangout deleted.', true);
         } else {
           await api.leaveMeeting(meeting.id, sessionToken);
+          triggerSnackbar('Hangout left.', true);
         }
 
         handleClose();
         handleRefetchMeetings();
-        triggerSnackbar('Hangout left.', true);
       } catch (error) {
         console.log(error);
       }
@@ -333,6 +334,7 @@ export const MeetingCard = ({
               <CardHeader
                 avatar={
                   <Avatar
+                    src={meetingOwner?.image_url}
                     aria-label='recipe'
                     className={classes.avatar}
                     variant='rounded'
@@ -502,7 +504,7 @@ export const MeetingCard = ({
                       container
                       spacing={2}
                       className={classes.usersContainer}
-                    >
+                    >{console.log(meetingUsers)}
                       {meetingUsers.map((user: IUser, index) => (
                         <Grid
                           item
@@ -511,6 +513,7 @@ export const MeetingCard = ({
                           className={classes.userContainer}
                         >
                           <Avatar
+                            src={user.image_url}
                             aria-label='recipe'
                             variant='rounded'
                             className={classes.avatar}
@@ -556,6 +559,7 @@ export const MeetingCard = ({
                             }
                           >
                             <Avatar
+                              src={comment.user.image_url}
                               variant='rounded'
                               aria-label='avatar'
                               className={classes.commentAvatar}
@@ -567,7 +571,7 @@ export const MeetingCard = ({
                             variant='body2'
                             className={classes.commentContent}
                           >
-                            {comment.content}
+                            {comment.content.replaceAll("\\n"," ")}
                           </Typography>
                         </Box>
                       ))}

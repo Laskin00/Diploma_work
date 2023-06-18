@@ -7,6 +7,7 @@ import { HomePage } from "../screens/HomePage/home-page";
 import { NotFound } from "../screens/NotFound/not-found";
 import { SignIn } from "../screens/SignIn/sign-in";
 import { SignUp } from "../screens/SignUp/sign-up";
+import { Profile } from "../screens/Profile/profile";
 
 const RootRoutes = () => {
   const [user, setUser] = useState<IUser | null>(null);
@@ -47,6 +48,7 @@ const RootRoutes = () => {
 
           <Route exact path="/" component={HomePage} />
           <Route exact path="/meeting/join/:inviteToken" component={HomePage} />
+          <Route exact path="/profile" component={Profile} />
 
           <Route component={NotFound} />
         </Switch>
