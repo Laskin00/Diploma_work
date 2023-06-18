@@ -65,7 +65,21 @@ CREATE TABLE meetingcomments(
     meeting_uuid VARCHAR(255) NOT NULL REFERENCES meetings(meeting_uuid) ON DELETE CASCADE
 );
 
-INSERT INTO users(user_uuid,first_name,last_name,is_admin,email,pwd) VALUES('1admin1','Admin','Admin',True,'ad@abv.bg','$2a$10$9NJul0512jUPAG1afkwfw.VHFDKHEBZuIbf8.noen0BACrWcv03u6');
+-- USER SEED
+INSERT INTO users(user_uuid,first_name,last_name,is_admin,email,pwd) VALUES('1admin1','Test','Admin',True,'ad@abv.bg','$2a$10$9NJul0512jUPAG1afkwfw.VHFDKHEBZuIbf8.noen0BACrWcv03u6');
+INSERT INTO users(user_uuid,first_name,last_name,is_admin,email,pwd,image_url) VALUES('2','Michael','Scott',False,'michael.scott@office.com','$2a$10$.l5es2w3.tkO5HUKnF9KHOUHBq4zsJLx90IrgVB6iMZY9ESzM5rtC','https://upload.wikimedia.org/wikipedia/en/thumb/d/dc/MichaelScott.png/220px-MichaelScott.png');
+INSERT INTO users(user_uuid,first_name,last_name,is_admin,email,pwd,image_url) VALUES('3','Jim','Halpert',False,'jim.halpert@office.com','$2a$10$.l5es2w3.tkO5HUKnF9KHOUHBq4zsJLx90IrgVB6iMZY9ESzM5rtC','https://decider.com/wp-content/uploads/2017/11/jim-halpert.jpg?quality=75&strip=all&w=646&h=431&crop=1');
+INSERT INTO users(user_uuid,first_name,last_name,is_admin,email,pwd,image_url) VALUES('4','Pam','Beesly',False,'pam.beesly@office.com','$2a$10$.l5es2w3.tkO5HUKnF9KHOUHBq4zsJLx90IrgVB6iMZY9ESzM5rtC','https://pbs.twimg.com/profile_images/1550486343641333761/J5gT8cvf_400x400.jpg');
+INSERT INTO users(user_uuid,first_name,last_name,is_admin,email,pwd,image_url) VALUES('5','Dwight','Schrute',False,'dwight.schrute@office.com','$2a$10$.l5es2w3.tkO5HUKnF9KHOUHBq4zsJLx90IrgVB6iMZY9ESzM5rtC','https://www.myany.city/sites/default/files/styles/scaled_cropped_medium__260x260/public/field/image/node-related-images/sample-dwight-k-schrute.jpg?itok=8TfRscbA');
+
+-- MEETING SEED
+INSERT INTO meetings(meeting_uuid, meeting_location,description,invite_token) VALUES('1','The office', 'A normal work meeting', 'TheOffice');
+
+-- MUC SEED
+INSERT INTO meetinguserconnections(id,is_owner,user_uuid,meeting_uuid) VALUES(1,true,'2','1');
+INSERT INTO meetinguserconnections(id,is_owner,user_uuid,meeting_uuid) VALUES(2,false,'3','1');
+INSERT INTO meetinguserconnections(id,is_owner,user_uuid,meeting_uuid) VALUES(3,false,'4','1');
+INSERT INTO meetinguserconnections(id,is_owner,user_uuid,meeting_uuid) VALUES(4,false,'5','1');
 
 
 ### Setup connection
