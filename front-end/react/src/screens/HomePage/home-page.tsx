@@ -523,8 +523,9 @@ export const HomePage = () => {
           ) : (
             <Box className={classes.cardWrapperShadow}>
               <Box className={classes.cardWrapper}>
-                <Typography variant='h3' className={classes.heading}>
-                  No hangouts? Join an existing one or create your own!
+                <Typography variant='h3' className={classes.heading} onClick={handleOpen}
+>
+                  Create or join a hangout.
                 </Typography>
               </Box>
             </Box>
