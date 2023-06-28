@@ -143,7 +143,6 @@ export const SignUp = () => {
                 <Grid item xs={12}>
                   <TextField
                     variant='outlined'
-                    required
                     fullWidth
                     name='image_url'
                     label='Image URL'

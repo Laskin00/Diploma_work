@@ -85,9 +85,12 @@ public class MeetingController {
 		}else if(meeting == null){
 			return HelperService.toJson("error","Invalid meeting uuid.");
 		}
-		MeetingUserConnection muc = meetingUserConnectionRepository.getMeetingUserConnectionByMeetingAndUser(meeting,user);
-		if(!muc.isOwner() && !user.getIsAdmin()){
-			return HelperService.toJson("error","You are not owner of the meeting.");
+
+		if (!user.getIsAdmin()) {
+			MeetingUserConnection muc = meetingUserConnectionRepository.getMeetingUserConnectionByMeetingAndUser(meeting, user);
+			if (!muc.isOwner()) {
+				return HelperService.toJson("error", "You are not owner of the meeting.");
+			}
 		}
 		meetingUserConnectionRepository.deleteMeetingUserConnectionByMeeting(meeting);
 		meetingRepository.deleteByUuid(meeting.getId());
